@@ -61,6 +61,18 @@
 
             <a href="{{ url_for('add_vaccination', dog_id=dog.id) }}" class="btn btn-success mt-2">Add Vaccination</a>
         </div>
+        {% if dog.is_lost %}
+            <h3 style="color:red;">🚨 This dog is reported LOST!</h3>
+            <p>If found, please contact:</p>
+            <p><strong>{{ owner.full_name }}</strong></p>
+            <p>📞 {{ owner.contact_number }}</p>
+            <p>🏠 {{ owner.address }}</p>
+        {% endif %}
+    
+        <a href="{{ url_for('generate_id', dog_id=dog.id) }}" target="_blank">
+            🪪 Generate Dog ID Card (PDF)
+        </a>
+
     </div>
 </div>
 </body>

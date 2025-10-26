@@ -1,0 +1,20 @@
+<h3>Your Dogs</h3>
+{% if dogs %}
+    <ul>
+    {% for dog in dogs %}
+        <li>
+            <a href="{{ url_for('dog_profile', dog_id=dog.id) }}">
+                {{ dog.name }} ({{ dog.breed }})
+            </a>
+            {% if dog.is_lost %}
+                🟥 <strong>Marked as Lost</strong>
+                <a href="{{ url_for('toggle_lost', dog_id=dog.id) }}">[Mark as Found]</a>
+            {% else %}
+                ✅ <a href="{{ url_for('toggle_lost', dog_id=dog.id) }}">[Mark as Lost]</a>
+            {% endif %}
+        </li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No dogs registered yet. <a href="{{ url_for('add_dog') }}">Add one</a></p>
+{% endif %}
